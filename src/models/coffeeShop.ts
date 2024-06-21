@@ -4,7 +4,7 @@ export interface ICoffeeShop extends Document {
     name: string;
     location: string;
     rating: number;
-    image: string;
+    image?: string;
     description?: string;
 }
 
