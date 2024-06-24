@@ -5,7 +5,7 @@ interface CoffeeShopCardProps {
   name: string;
   rating: number;
   reviews: number;
-  distance: number;
+  distance?: number;
 }
 
 const CoffeeShopCard = ({
@@ -33,7 +33,7 @@ const CoffeeShopCard = ({
         <span className="text-primary/90 font-bold"> {rating}</span>
         <span className="text-gray-300 ml-2 font-bold">{reviews} reviews</span>
       </div>
-      <p className="text-primary/90 font-bold">{distance} miles</p>
+      <p className="text-primary/90 font-bold">4.5 miles</p>
     </div>
   </div>
 );

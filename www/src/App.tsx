@@ -1,15 +1,15 @@
+import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 
-// import CoffeeShopDetails from '~/pages/CoffeeShopDetails/CoffeeShopDetails';
-// import CoffeeShopListing from '~/pages/CoffeeShopListing/CoffeeShopListing';
 import './App.css';
 
 import router from './routes';
+import { store } from './store';
 
 const App = () => (
-  <div>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </div>
+  </Provider>
 );
 
 export default App;
