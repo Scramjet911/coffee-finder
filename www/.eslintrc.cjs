@@ -57,15 +57,10 @@ module.exports = {
     'react/button-has-type': 'off',
     'react/prop-types': 'off', // Since we do not use prop-types
     'react/require-default-props': 'off', // Since we do not use prop-types
-    'no-restricted-imports': [
-      'warn',
-      {
-        patterns: ['@features/*/*', '@core/*/*', '@contexts/*/*']
-      }
-    ],
     'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
     'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
     radix: 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
@@ -94,7 +89,7 @@ module.exports = {
               // or `@` followed by a letter.
               ['^react', '^@?\\w'],
               // Absolute imports and Relative imports.
-              [`^~/(${folders.join('|')})(/.*|$)`, '^\\.'],
+              [`^~/(${folders.join('|')})(/.*|$)`],
               ['^[^.]']
             ]
           }

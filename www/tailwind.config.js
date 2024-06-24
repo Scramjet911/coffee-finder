@@ -10,7 +10,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#003B40'
+        primary: '#003B40',
+        milky_white: '#edf0ef'
       },
       fontFamily: {
         raleway: ['Raleway']

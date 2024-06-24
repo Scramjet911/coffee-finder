@@ -17,8 +17,8 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "~/*": ["*"]
+      "~/*": ["./*"]
     }
   },
-  "include": ["src", ".eslintrc.cjs"]
+  "include": ["src", ".eslintrc.cjs", "tailwind.config.js"]
 }

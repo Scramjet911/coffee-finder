@@ -1,10 +1,14 @@
-import CoffeeShopListing from './pages/CoffeeShopListing';
+import { RouterProvider } from 'react-router-dom';
 
+// import CoffeeShopDetails from '~/pages/CoffeeShopDetails/CoffeeShopDetails';
+// import CoffeeShopListing from '~/pages/CoffeeShopListing/CoffeeShopListing';
 import './App.css';
+
+import router from './routes';
 
 const App = () => (
   <div>
-    <CoffeeShopListing />
+    <RouterProvider router={router} />
   </div>
 );
 

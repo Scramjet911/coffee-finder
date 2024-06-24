@@ -1,11 +1,10 @@
 import { User } from 'react-feather';
 
-import CoffeeImage from '../assets/coffee.webp';
-import CoffeeImage2 from '../assets/coffee2.webp';
-import BottomNavigation from '../components/BottomNavigation';
-import FeaturedCoffeeShops from '../components/FeaturedShopList';
-import Header from '../components/Header';
-import Search from '../components/Search';
+import CoffeeImage from '~/assets/coffee.webp';
+import CoffeeImage2 from '~/assets/coffee2.webp';
+import { BottomNavigation, Header, Search } from '~/components';
+
+import FeaturedCoffeeShops from './components/FeaturedShopList';
 
 const coffeeShops = [
   {
