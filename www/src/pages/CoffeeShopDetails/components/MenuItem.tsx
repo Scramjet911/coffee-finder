@@ -3,8 +3,8 @@ import { Plus } from 'react-feather';
 interface MenuItemProps {
   name: string;
   description: string;
-  price: string;
-  imageUrl: string;
+  price: number;
+  imageUrl?: string;
 }
 
 const MenuItem = ({ name, description, price, imageUrl }: MenuItemProps) => (

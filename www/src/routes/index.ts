@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     Component: CoffeeShopListing
   },
   {
-    path: '/:id/',
+    path: '/shop/:id/',
     Component: CoffeeShopDetails
   }
 ]);

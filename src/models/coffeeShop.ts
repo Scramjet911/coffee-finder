@@ -35,4 +35,8 @@ const coffeeShopSchema: Schema = new Schema({
     timestamps: true,
 });
 
+coffeeShopSchema.set('toJSON', {
+    virtuals: true
+});
+
 export default mongoose.model<ICoffeeShop>('CoffeeShop', coffeeShopSchema);

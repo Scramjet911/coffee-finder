@@ -1,8 +1,7 @@
 import { User } from 'react-feather';
 
-import { useGetAllCoffeeShopsQuery } from '~/services/coffeeShopService';
-
 import { BottomNavigation, Header, Search } from '~/components';
+import { useGetAllCoffeeShopsQuery } from '~/services/coffeeShopService';
 
 import FeaturedCoffeeShops from './components/FeaturedShopList';
 

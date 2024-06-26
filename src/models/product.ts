@@ -13,12 +13,12 @@ const productSchema: Schema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CoffeeShop',
         required: true,
-        index: true, 
+        index: true,
     },
     name: {
         type: String,
         required: true,
-        index: true, 
+        index: true,
     },
     price: {
         type: Number,
@@ -27,12 +27,14 @@ const productSchema: Schema = new Schema({
     category: {
         type: String,
         required: true,
-        index: true, 
+        index: true,
     },
     description: {
         type: String,
-        required: false,
     },
+    image: {
+        type: String,
+    }
 }, {
     timestamps: true,
 });
