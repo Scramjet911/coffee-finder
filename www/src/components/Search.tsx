@@ -3,14 +3,17 @@ import { Search as SearchIcon } from 'react-feather';
 
 import FilterIcon from '../assets/slider.svg';
 
-const Search = () => {
-  const [inputValue, setInputValue] = useState('');
+interface SearchProps {
+  searchTerm?: string;
+  setSearchTerm: (search: string) => void;
+}
+const Search = ({ searchTerm, setSearchTerm }: SearchProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <div className="relative flex items-center space-x-2 py-4">
       <div className="relative flex w-full md:w-auto">
-        {!isFocused && !inputValue && (
+        {!isFocused && !searchTerm && (
           <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <SearchIcon size={18} className="text-gray-400" />
             <span className="ml-2 text-gray-400">Search</span>
@@ -19,8 +22,8 @@ const Search = () => {
         <input
           type="text"
           className="w-full p-2 pl-4 border rounded-xl focus:outline-none bg-gray-100"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />

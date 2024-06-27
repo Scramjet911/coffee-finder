@@ -12,3 +12,13 @@ export interface CoffeeShop {
   reviews: number;
   image: string;
 }
+
+export interface CoffeeShopFilters {
+  name?: string;
+  location?: {
+    point: number[];
+    radius: number;
+  };
+  minRating?: string;
+  maxRating?: string;
+}

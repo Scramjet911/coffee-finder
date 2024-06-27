@@ -3,13 +3,14 @@ import CoffeeShop, { ICoffeeShop } from "../models/coffeeShop";
 import { CoffeeShopFilters } from "../types/coffeeShop";
 import { BadRequestError, NotFoundError } from "../utils/errors";
 import { isValidObjectId } from "../utils/validate";
+import logger from "../utils/logger";
 
 export const getAllCoffeeShops = async ({ name, location, maxRating, minRating }: CoffeeShopFilters): Promise<ICoffeeShop[]> => {
   try {
-    const query: FilterQuery<ICoffeeShop> = {};
+    let query: FilterQuery<ICoffeeShop> = {};
 
     if (name) {
-      query.$text = { $search: name };
+      query.name = { $regex: new RegExp(`^${name}`), $options: 'i' };
     }
 
     if (location) {
@@ -23,8 +24,12 @@ export const getAllCoffeeShops = async ({ name, location, maxRating, minRating }
     if (maxRating) {
       query.rating = { ...query.rating, $lte: parseFloat(maxRating) };
     }
+    let coffeeShops;
+    if (name)
+      coffeeShops = await CoffeeShop.find(query).collation({ locale: "en", strength: 1 });
+    else
+      coffeeShops = await CoffeeShop.find(query)
 
-    const coffeeShops = await CoffeeShop.find(query);
     return coffeeShops;
   } catch (error) {
     throw new Error('Internal Server Error');

@@ -51,6 +51,7 @@ const coffeeShopSchema: Schema = new Schema({
 coffeeShopSchema.set('toJSON', {
     virtuals: true
 });
-coffeeShopSchema.index({ location: '2dsphere', name: 'text' })
+coffeeShopSchema.index({ 'location': '2dsphere' })
+coffeeShopSchema.index({ 'name': 1 }, { collation: { locale: "en", strength: 1 } })
 
 export default mongoose.model<ICoffeeShop>('CoffeeShop', coffeeShopSchema);

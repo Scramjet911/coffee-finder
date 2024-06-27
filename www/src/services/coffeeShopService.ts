@@ -1,10 +1,13 @@
 import baseApi from '~/api';
-import { CoffeeShop } from '~/types/coffeeShop';
+import { CoffeeShop, CoffeeShopFilters } from '~/types/coffeeShop';
 
 export const coffeeShopApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllCoffeeShops: builder.query<CoffeeShop[], void>({
-      query: () => '/'
+    getAllCoffeeShops: builder.query<CoffeeShop[], CoffeeShopFilters>({
+      query: (filters) => ({
+        url: '/',
+        params: filters
+      })
     }),
     getCoffeeShopById: builder.query<CoffeeShop, string>({
       query: (id) => `/${id}`
