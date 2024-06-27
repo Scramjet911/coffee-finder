@@ -4,7 +4,6 @@ const baseQuery = fetchBaseQuery({
   baseUrl: `/api/coffee-shops`
 });
 
-// Creating API instance using createApi
 const baseApi = createApi({
   reducerPath: 'api',
   baseQuery,

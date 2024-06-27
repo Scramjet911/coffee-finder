@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import CoffeeImage from '~/assets/coffee.webp';
-import CoffeeImage2 from '~/assets/coffee2.webp';
+import CustomMap from '~/components/CustomMap';
 import { useGetCoffeeShopByIdQuery } from '~/services/coffeeShopService';
 import { useGetAllProductsByShopIdQuery } from '~/services/shopProductService';
 
@@ -15,40 +14,19 @@ const CoffeeShopDetails = () => {
 
   const { data: coffeeShop } = useGetCoffeeShopByIdQuery(id ?? '');
   const { data: shopItems = [] } = useGetAllProductsByShopIdQuery(id ?? '');
-  // const coffeeShop = {
-  //   name: 'Haus Coffee',
-  //   rating: 4.4,
-  //   reviews: 429,
-  //   location: 'San Francisco, CA',
-  //   items: [
-  //     {
-  //       name: 'Cafè mocha',
-  //       description:
-  //         'A chocolate-flavored warm beverage that is a variant of a café latte sdf dsf dsf sdf dsf dsf',
-  //       price: '$3.00',
-  //       imageUrl: CoffeeImage
-  //     },
-  //     {
-  //       name: 'Caramel machiatto',
-  //       description: 'Steamed milk marked with an espresso and caramel topping',
-  //       price: '$3.50',
-  //       imageUrl: CoffeeImage2
-  //     }
-  //   ]
-  // };
 
   if (!coffeeShop) {
     return null;
   }
 
   return (
-    <div className="">
-      <CoverImage imageUrl={CoffeeImage} />
+    <div>
+      <CoverImage imageUrl={coffeeShop.image} />
       <CoffeeShopInfo
         name={coffeeShop.name}
         rating={coffeeShop.rating}
         reviews={coffeeShop.reviews}
-        location={coffeeShop.location}
+        address={coffeeShop.address}
       />
       <CategoryTabs />
       <div className="px-6 py-2">
@@ -62,6 +40,9 @@ const CoffeeShopDetails = () => {
           />
         ))}
       </div>
+      {coffeeShop?.location ? (
+        <CustomMap location={coffeeShop.location} />
+      ) : null}
     </div>
   );
 };

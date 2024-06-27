@@ -1,9 +1,34 @@
+import { FilterQuery } from "mongoose";
 import CoffeeShop, { ICoffeeShop } from "../models/coffeeShop";
+import { CoffeeShopFilters } from "../types/coffeeShop";
 import { BadRequestError, NotFoundError } from "../utils/errors";
 import { isValidObjectId } from "../utils/validate";
 
-export const getAllCoffeeShops = async (): Promise<ICoffeeShop[]> => {
-  return CoffeeShop.find();
+export const getAllCoffeeShops = async ({ name, location, maxRating, minRating }: CoffeeShopFilters): Promise<ICoffeeShop[]> => {
+  try {
+    const query: FilterQuery<ICoffeeShop> = {};
+
+    if (name) {
+      query.$text = { $search: name };
+    }
+
+    if (location) {
+      query.location = { $nearSphere: { $geometry: { type: "Point", coordinates: location.point }, distance: location.radius * 1000 } };
+    }
+
+    if (minRating) {
+      query.rating = { $gte: parseFloat(minRating) };
+    }
+
+    if (maxRating) {
+      query.rating = { ...query.rating, $lte: parseFloat(maxRating) };
+    }
+
+    const coffeeShops = await CoffeeShop.find(query);
+    return coffeeShops;
+  } catch (error) {
+    throw new Error('Internal Server Error');
+  }
 };
 
 export const getCoffeeShopById = async (

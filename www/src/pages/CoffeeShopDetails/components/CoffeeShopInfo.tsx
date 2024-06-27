@@ -2,14 +2,14 @@ interface CoffeeShopInfoProps {
   name: string;
   rating: number;
   reviews: number;
-  location: string;
+  address: string;
 }
 
 const CoffeeShopInfo = ({
   name,
   rating,
   reviews,
-  location
+  address
 }: CoffeeShopInfoProps) => (
   <div className="pt-6 px-10 rounded-t-[2rem] -translate-y-6 bg-white">
     <h1 className="text-2xl font-bold text-primary/90">{name}</h1>
@@ -20,7 +20,7 @@ const CoffeeShopInfo = ({
         {reviews} reviews
       </span>
     </div>
-    <p className="text-primary/90 font-bold text-sm">{location}</p>
+    <p className="text-primary/90 font-bold text-sm">{address}</p>
   </div>
 );
 

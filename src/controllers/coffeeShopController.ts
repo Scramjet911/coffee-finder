@@ -2,13 +2,14 @@ import { Request, Response } from "express";
 import * as coffeeShopService from "../services/coffeeShopService";
 import { HttpError } from "../utils/errors";
 import logger from "../utils/logger";
+import { CoffeeShopFilters } from "../types/coffeeShop";
 
 export const getAllCoffeeShops = async (
-  req: Request,
+  req: Request<any, any, any, CoffeeShopFilters>,
   res: Response
 ): Promise<void> => {
   try {
-    const coffeeShops = await coffeeShopService.getAllCoffeeShops();
+    const coffeeShops = await coffeeShopService.getAllCoffeeShops(req.query);
     res.json(coffeeShops);
   } catch (error) {
     logger.error("Error fetching coffee shops:", error);
