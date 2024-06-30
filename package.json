@@ -5,9 +5,10 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
+    "deploy": "node server.js",
     "dev": "ts-node-dev --respawn --transpile-only --env-file=.env src/server.ts",
     "build": "tsc",
-    "postbuild": "cp package*.json dist && (cd dist && npm ci --omit=dev)",
+    "postbuild": "cp -t dist package*.json Procfile && (cd dist && npm ci --omit=dev)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
