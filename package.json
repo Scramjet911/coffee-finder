@@ -1,12 +1,14 @@
 {
   "name": "coffee-finder",
   "version": "1.0.0",
-  "description": "A Coffee Shop Finder API server and web app built with React, Node.js, Express, and MongoDB.",
+  "description": "A Coffee Shop Finder API server and web app built with React, Node.js, Express, and Mongoose.",
   "main": "dist/server.js",
   "scripts": {
-    "start": "node --env-file .env dist/server.js",
+    "start": "node dist/server.js",
+    "deploy": "node server.js",
     "dev": "ts-node-dev --respawn --transpile-only --env-file=.env src/server.ts",
-    "build": "tsc --env-file .env",
+    "build": "tsc",
+    "postbuild": "cp -t dist package*.json Procfile && (cd dist && npm ci --omit=dev)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -17,7 +19,6 @@
     "express": "^4.19.2",
     "mongoose": "^8.4.3",
     "morgan": "^1.10.0",
-    "ts-node-dev": "^2.0.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.4.5"
   },
   "repository": {

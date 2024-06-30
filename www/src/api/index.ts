@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `/api/coffee-shops`
+  baseUrl: `${import.meta.env.VITE_API_ENDPOINT}/api/coffee-shops`
 });
 
 const baseApi = createApi({
