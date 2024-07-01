@@ -1,0 +1,48 @@
+name: Generate a build and push to build branch
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: git-checkout
+        uses: actions/checkout@v4
+
+      - name: Install all dependencies and build API
+        run: |
+          npm install
+          npm run build
+    
+      - name: Push api to branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build-api
+          FOLDER: dist 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Build: ({sha}) {msg}"
+      
+      - name: Install and build web app
+        run: |
+          cd www
+          npm i
+          npm run build
+      
+      - name: Push site to branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build-web
+          FOLDER: www/dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Build: ({sha}) {msg}"
