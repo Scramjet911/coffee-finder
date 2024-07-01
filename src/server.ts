@@ -9,6 +9,8 @@ import corsMiddleware from "./middleware/corsMiddleware";
 
 const app = express();
 
+app.use(corsMiddleware);
+
 connect();
 
 app.use(bodyParser.json());
@@ -16,7 +18,6 @@ app.use(bodyParser.json());
 app.use("/api/coffee-shops", coffeeShopRoutes);
 app.use("/api/coffee-shops", productRoutes);
 app.use(morganMiddleware);
-app.use(corsMiddleware);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
