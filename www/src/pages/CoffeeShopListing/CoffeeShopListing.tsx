@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { User } from 'react-feather';
 
 import { BottomNavigation, Header, Search } from '~/components';
+import { useDebounce } from '~/hooks/useDebounce';
 import { useLazyGetAllCoffeeShopsQuery } from '~/services/coffeeShopService';
 
-import { useDebounce } from '../hooks/useDebounce';
 import FeaturedCoffeeShops from './components/FeaturedShopList';
 
 const CoffeeShopListing = () => {

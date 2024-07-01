@@ -5,7 +5,8 @@ export const useDebounce = (
   wait?: number,
   immediate?: boolean
 ) => {
-  const timeout: MutableRefObject<NodeJS.Timeout | ''> = useRef('');
+  const timeout: MutableRefObject<ReturnType<typeof setTimeout> | ''> =
+    useRef('');
   return (...args: any) => {
     const context = this;
     clearTimeout(timeout.current);
